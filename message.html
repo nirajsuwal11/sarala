@@ -8,52 +8,144 @@
         body {
             margin: 0;
             padding: 0;
-            background: linear-gradient(135deg, #ffe0f0, #fff5f8);
+            background: linear-gradient(270deg, #ffe0f0, #fff5f8, #ffe0f0);
+            background-size: 600% 600%;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            overflow: hidden;
+            position: relative;
+            min-height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
-            min-height: 100vh;
+            animation: bgShift 15s ease infinite;
+        }
+
+        @keyframes bgShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .hearts {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            overflow: hidden;
+        }
+
+        .heart {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background: #ff4d88;
+            transform: rotate(45deg);
+            animation: float 8s infinite;
+            opacity: 0.7;
+        }
+
+        .heart::before,
+        .heart::after {
+            content: "";
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background: #ff4d88;
+            border-radius: 50%;
+        }
+
+        .heart::before {
+            top: -10px;
+            left: 0;
+        }
+
+        .heart::after {
+            left: -10px;
+            top: 0;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(0) rotate(45deg) scale(1);
+                opacity: 0.7;
+            }
+            50% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100vh) rotate(45deg) scale(1.5);
+                opacity: 0;
+            }
         }
 
         .msg {
-            background: white;
-            padding: 30px;
-            border-radius: 20px;
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+            background: rgba(255, 255, 255, 0.95);
+            padding: 35px;
+            border-radius: 25px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
             max-width: 500px;
             width: 90%;
             text-align: center;
-            animation: fadeIn 1s ease;
+            animation: slideFade 1.2s ease forwards, glowBorder 3s linear infinite;
+            opacity: 0;
+            border: 3px solid transparent;
+            border-image: linear-gradient(45deg, #ff69b4, #ff4d88, #ff69b4) 1;
+            border-image-slice: 1;
+        }
+
+        @keyframes slideFade {
+            0% {
+                transform: translateY(30px) scale(0.95);
+                opacity: 0;
+            }
+            100% {
+                transform: translateY(0) scale(1);
+                opacity: 1;
+            }
+        }
+
+        @keyframes glowBorder {
+            0% {
+                box-shadow: 0 0 10px #ff69b4, 0 0 20px #ff4d88, 0 0 30px #ff69b4;
+            }
+            50% {
+                box-shadow: 0 0 20px #ff4d88, 0 0 40px #ff69b4, 0 0 60px #ff4d88;
+            }
+            100% {
+                box-shadow: 0 0 10px #ff69b4, 0 0 20px #ff4d88, 0 0 30px #ff69b4;
+            }
         }
 
         .msg h2 {
             color: #ff69b4;
             margin-bottom: 20px;
-            font-size: 26px;
+            font-size: 28px;
+            animation: pulse 2s infinite;
         }
 
         .msg p {
-            color: #333;
+            color: #444;
             font-size: 16px;
-            line-height: 1.7;
+            line-height: 1.8;
         }
 
         .msg strong {
             color: #ff4d88;
+            animation: pulse 1.5s infinite alternate;
         }
 
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
         }
 
-        @media (max-width: 400px) {
+        @media (max-width: 480px) {
             .msg {
-                padding: 20px;
+                padding: 25px;
             }
             .msg h2 {
-                font-size: 22px;
+                font-size: 24px;
             }
             .msg p {
                 font-size: 15px;
@@ -62,19 +154,23 @@
     </style>
 </head>
 <body>
-    <div class="msg">
-        <h2>Message from Me</h2>
-        <p>
-            Dear, <strong>sanu princess ❤️</strong><br><br>
-            I just want to take a moment to thank you for coming into my life. You’ve brought so much joy, warmth, and light, and I truly feel blessed to have you by my side. I want you to know that I am always here for you, through every step of your journey.<br><br>
-            I believe in you so much, and I want to see you rise to the top. Whatever path you choose, I will be right here, supporting you with all my heart. In both our moments of happiness and sorrow, we are together always.<br><br>
-            
-        Together, there’s nothing we can’t face. I’m with you now and always. You mean the world to me. 🌍 🌸 ❤️
-            <br>
-            I just wanted to say you’re really lucky to have such an amazing father. 
-            He’s kind, wise, and raised an incredible daughter and i am proud of it. I have so much respect for him.
+    <div class="hearts">
+        <div class="heart" style="left: 20%; animation-delay: 0s;"></div>
+        <div class="heart" style="left: 40%; animation-delay: 2s;"></div>
+        <div class="heart" style="left: 60%; animation-delay: 4s;"></div>
+        <div class="heart" style="left: 80%; animation-delay: 1s;"></div>
+        <div class="heart" style="left: 30%; animation-delay: 3s;"></div>
+        <div class="heart" style="left: 50%; animation-delay: 5s;"></div>
+    </div>
 
-            
+    <div class="msg">
+        <h2>Message from Me ❤️</h2>
+        <p>
+            Dear <strong>Sanu Princess ❤️</strong>,<br><br>
+            I just want to take a moment to thank you for coming into my life. You’ve brought so much joy, warmth, and light, and I truly feel blessed to have you by my side. I want you to know that I am always here for you, every step of the way.<br><br>
+            I believe in you with all my heart, and I want to see you rise to the top. Whatever path you choose, I’ll be right here, cheering you on and supporting you endlessly. In both our moments of happiness and sorrow, we will stand together—always.<br><br>
+            Together, there’s nothing we can’t face. I’m with you now and always. You mean the world to me. 🌍 🌸 <strong>❤️</strong><br><br>
+            And I just want to say—you’re truly lucky to have such an amazing father. He’s kind, wise, and raised an incredible daughter. I’m so proud of you and have so much respect for him.
         </p>
     </div>
 </body>
