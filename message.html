@@ -54,28 +54,13 @@
             border-radius: 50%;
         }
 
-        .heart::before {
-            top: -10px;
-            left: 0;
-        }
-
-        .heart::after {
-            left: -10px;
-            top: 0;
-        }
+        .heart::before { top: -10px; left: 0; }
+        .heart::after { left: -10px; top: 0; }
 
         @keyframes float {
-            0% {
-                transform: translateY(0) rotate(45deg) scale(1);
-                opacity: 0.7;
-            }
-            50% {
-                opacity: 1;
-            }
-            100% {
-                transform: translateY(-100vh) rotate(45deg) scale(1.5);
-                opacity: 0;
-            }
+            0% { transform: translateY(0) rotate(45deg) scale(1); opacity: 0.7; }
+            50% { opacity: 1; }
+            100% { transform: translateY(-100vh) rotate(45deg) scale(1.5); opacity: 0; }
         }
 
         .msg {
@@ -94,26 +79,14 @@
         }
 
         @keyframes slideFade {
-            0% {
-                transform: translateY(30px) scale(0.95);
-                opacity: 0;
-            }
-            100% {
-                transform: translateY(0) scale(1);
-                opacity: 1;
-            }
+            0% { transform: translateY(30px) scale(0.95); opacity: 0; }
+            100% { transform: translateY(0) scale(1); opacity: 1; }
         }
 
         @keyframes glowBorder {
-            0% {
-                box-shadow: 0 0 10px #ff69b4, 0 0 20px #ff4d88, 0 0 30px #ff69b4;
-            }
-            50% {
-                box-shadow: 0 0 20px #ff4d88, 0 0 40px #ff69b4, 0 0 60px #ff4d88;
-            }
-            100% {
-                box-shadow: 0 0 10px #ff69b4, 0 0 20px #ff4d88, 0 0 30px #ff69b4;
-            }
+            0% { box-shadow: 0 0 10px #ff69b4, 0 0 20px #ff4d88, 0 0 30px #ff69b4; }
+            50% { box-shadow: 0 0 20px #ff4d88, 0 0 40px #ff69b4, 0 0 60px #ff4d88; }
+            100% { box-shadow: 0 0 10px #ff69b4, 0 0 20px #ff4d88, 0 0 30px #ff69b4; }
         }
 
         .msg h2 {
@@ -127,6 +100,7 @@
             color: #444;
             font-size: 16px;
             line-height: 1.8;
+            margin-bottom: 25px;
         }
 
         .msg strong {
@@ -140,6 +114,32 @@
             100% { transform: scale(1); }
         }
 
+        .btn-home {
+            display: inline-block;
+            padding: 12px 25px;
+            font-size: 16px;
+            color: white;
+            background: linear-gradient(45deg, #ff69b4, #ff4d88);
+            border: none;
+            border-radius: 30px;
+            cursor: pointer;
+            text-decoration: none;
+            box-shadow: 0 5px 15px rgba(255, 105, 180, 0.4);
+            transition: transform 0.3s, box-shadow 0.3s;
+            animation: buttonFade 1.5s ease forwards;
+            opacity: 0;
+        }
+
+        .btn-home:hover {
+            transform: scale(1.1);
+            box-shadow: 0 8px 25px rgba(255, 105, 180, 0.6);
+        }
+
+        @keyframes buttonFade {
+            0% { opacity: 0; transform: translateY(20px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+
         @media (max-width: 480px) {
             .msg {
                 padding: 25px;
@@ -149,6 +149,10 @@
             }
             .msg p {
                 font-size: 15px;
+            }
+            .btn-home {
+                font-size: 15px;
+                padding: 10px 20px;
             }
         }
     </style>
@@ -166,12 +170,13 @@
     <div class="msg">
         <h2>Message from Me ❤️</h2>
         <p>
-            Dear <strong>Sanu Princess ❤️</strong>,<br><br>
+            Dear <strong> Sanu Princess ❤️</strong>,<br><br>
             I just want to take a moment to thank you for coming into my life. You’ve brought so much joy, warmth, and light, and I truly feel blessed to have you by my side. I want you to know that I am always here for you, every step of the way.<br><br>
             I believe in you with all my heart, and I want to see you rise to the top. Whatever path you choose, I’ll be right here, cheering you on and supporting you endlessly. In both our moments of happiness and sorrow, we will stand together—always.<br><br>
             Together, there’s nothing we can’t face. I’m with you now and always. You mean the world to me. 🌍 🌸 <strong>❤️</strong><br><br>
             And I just want to say—you’re truly lucky to have such an amazing father. He’s kind, wise, and raised an incredible daughter. I’m so proud of you and have so much respect for him.
         </p>
+        <a href="index.html" class="btn-home">Back to Home</a>
     </div>
 </body>
 </html>
