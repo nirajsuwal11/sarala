@@ -11,13 +11,13 @@
             background: linear-gradient(270deg, #ffe0f0, #fff5f8, #ffe0f0);
             background-size: 600% 600%;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            overflow: hidden;
             position: relative;
             min-height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
             animation: bgShift 15s ease infinite;
+            overflow-x: hidden; /* FIX: allow vertical scroll */
         }
 
         @keyframes bgShift {
@@ -76,6 +76,7 @@
             border: 3px solid transparent;
             border-image: linear-gradient(45deg, #ff69b4, #ff4d88, #ff69b4) 1;
             border-image-slice: 1;
+            margin: 40px 0; /* add spacing so scroll works */
         }
 
         @keyframes slideFade {
@@ -170,7 +171,7 @@
     <div class="msg">
         <h2>Message from Me ❤️</h2>
         <p>
-            Dear <strong> Sanu Princess ❤️</strong>,<br><br>
+            Dear <strong>Saru Princess ❤️</strong>,<br><br>
             I just want to take a moment to thank you for coming into my life. You’ve brought so much joy, warmth, and light, and I truly feel blessed to have you by my side. I want you to know that I am always here for you, every step of the way.<br><br>
             I believe in you with all my heart, and I want to see you rise to the top. Whatever path you choose, I’ll be right here, cheering you on and supporting you endlessly. In both our moments of happiness and sorrow, we will stand together—always.<br><br>
             Together, there’s nothing we can’t face. I’m with you now and always. You mean the world to me. 🌍 🌸 <strong>❤️</strong><br><br>
