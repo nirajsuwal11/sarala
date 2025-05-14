@@ -14,7 +14,8 @@
     body {
       margin: 0;
       padding: 0;
-      background: linear-gradient(135deg, #f6d365, #fda085);
+      background: url('https://images.unsplash.com/photo-1501004318641-b39e6451bec6?auto=format&fit=crop&w=1950&q=80') no-repeat center center fixed;
+      background-size: cover;
       font-family: 'Open Sans', sans-serif;
       display: flex;
       justify-content: center;
@@ -25,7 +26,7 @@
     }
 
     .card {
-      background: white;
+      background: rgba(255, 255, 255, 0.3);
       padding: 40px;
       border-radius: 30px;
       box-shadow: 0 20px 50px rgba(0,0,0,0.2);
@@ -34,8 +35,17 @@
       text-align: center;
       animation: fadeIn 1.5s ease;
       margin: 20px;
-      position: relative;
       z-index: 10;
+      border: 1px solid rgba(255, 255, 255, 0.3);
+    }
+
+    .card img {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin-bottom: 20px;
+      border: 3px solid #d81b60;
     }
 
     h1 {
@@ -47,14 +57,14 @@
 
     p {
       font-size: 1.1rem;
-      color: #444;
+      color: #000;
       margin-bottom: 20px;
       line-height: 1.5;
     }
 
     .highlighted-line {
       font-weight: bold;
-      color: #d81b60;
+      color: #ad1457;
       animation: fadeGlow 3s ease-in-out;
       margin: 20px 0;
     }
@@ -82,27 +92,12 @@
       transform: scale(1.05);
     }
 
-    .flower {
-      position: absolute;
-      width: 40px;
-      height: 40px;
-      background-image: url('https://cdn-icons-png.flaticon.com/512/616/616408.png');
-      background-size: cover;
-      animation: float 10s infinite ease-in-out;
-      pointer-events: none;
-    }
-
     canvas {
       position: fixed;
       top: 0;
       left: 0;
       pointer-events: none;
       z-index: 0;
-    }
-
-    @keyframes float {
-      0% { transform: translateY(0) rotate(0deg); opacity: 1; }
-      100% { transform: translateY(100vh) rotate(360deg); opacity: 0; }
     }
 
     @keyframes fadeIn {
@@ -151,15 +146,14 @@
   </style>
 </head>
 <body>
-  <!-- Background Music -->
-  <audio id="bg-music" src="https://cdn.pixabay.com/audio/2023/03/14/audio_3e7615f365.mp3" autoplay loop></audio>
-
   <!-- Message Card -->
   <div class="card">
-    <h1>Congratulations, My Love! 🎉</h1>
-    <p>You did it! I’m so incredibly proud of you. Your new job is just the beginning of even more amazing things to come!</p>
-    <p class="highlighted-line">This is just the beginning of the amazing journey ahead — I’ll be by your side, cheering for you every step of the way.</p>
-    <p>Keep shining and showing the world your brilliance. 💼✨</p>
+    <img src="https://via.placeholder.com/120" alt="Her Photo" />
+    <h1>Congratulations, saru princess 🎉</h1>
+    <p>You did it! I’m so  proud of you. Your new job is just the beginning of even more amazing things to come</p>
+    <p class="highlighted-line">This is just the beginning of the amazing journey ahead. I’ll be by your side, 
+      cheering for you every step of the way. You deserve all the success coming your way . I belive in you. ❤️🧿</p>
+    <p>Keep shining and showing the world your brilliance saru. I am happy for you. Make your family proud 💼✨</p>
     <div class="heart">❤️</div>
     <button onclick="celebrate()">Celebrate 🎊</button>
     <button onclick="goHome()">Back to Home 🏡</button>
@@ -170,17 +164,6 @@
 
   <!-- JavaScript -->
   <script>
-    // Floating Flowers
-    for (let i = 0; i < 20; i++) {
-      const flower = document.createElement('div');
-      flower.classList.add('flower');
-      flower.style.left = `${Math.random() * 100}%`;
-      flower.style.animationDelay = `${Math.random() * 10}s`;
-      flower.style.animationDuration = `${8 + Math.random() * 5}s`;
-      document.body.appendChild(flower);
-    }
-
-    // Confetti Setup
     const canvas = document.getElementById('confetti-canvas');
     const ctx = canvas.getContext('2d');
     let particles = [];
@@ -229,18 +212,8 @@
     }
 
     function goHome() {
-      window.location.href = "index.html"; // Change to your actual home page
+      window.location.href = "index.html"; // Replace with your actual homepage URL
     }
-
-    // Handle Autoplay for Background Music
-    window.addEventListener("DOMContentLoaded", () => {
-      const music = document.getElementById("bg-music");
-      const playMusic = () => {
-        music.play().catch(() => {});
-        document.removeEventListener("click", playMusic);
-      };
-      document.addEventListener("click", playMusic);
-    });
   </script>
 </body>
 </html>
