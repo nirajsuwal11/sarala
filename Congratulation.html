@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Congratulations, Sunshine !</title>
+    <!-- Load Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts - Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* Custom styles not easily done with Tailwind or for specific elements */
+        body {
+            font-family: 'Inter', sans-serif;
+            /* Background image with a subtle gradient overlay */
+            background-image: url(saru3.jpeg); /* Placeholder for flower image */
+            background-size: cover; /* Cover the entire background */
+            background-position: center; /* Center the background image */
+            background-repeat: no-repeat; /* Do not repeat the image */
+            position: relative; /* Needed for pseudo-element overlay */
+            min-height: 100vh; /* Ensure full viewport height */
+            display: flex; /* Use flexbox for centering */
+            justify-content: center; /* Center horizontally */
+            align-items: center; /* Center vertically */
+            overflow: hidden; /* Hide overflow for falling elements */
+            padding: 1rem; /* Add some padding for small screens */
+            box-sizing: border-box; /* Include padding in element's total width and height */
+        }
+
+        /* Gradient overlay to make text more readable on top of the image */
+        body::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+          
+            z-index: 0; /* Below content, above background image */
+        }
+
+        .card {
+            /* Changed background-color to be more transparent */
+            background-color: rgba(255, 255, 255, 0.2); /* Reduced opacity to 60% */
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2); /* Soft shadow */
+            backdrop-filter: blur(1px); /* Subtle blur effect behind the card */
+            width: 100%; /* Take full width on small screens */
+            max-width: 500px; /* Limit max width for larger screens */
+            position: relative; /* Ensure card is above the gradient overlay */
+            z-index: 10;
+        }
+
+        /* Flower petal animation styles */
+        .flower-petal {
+            position: absolute;
+            width: 12px;
+            height: 20px;
+            background-color: var(--color);
+            opacity: 0;
+            /* Creates an elongated, slightly irregular petal shape */
+            border-radius: 50% 10% 50% 10% / 60% 40% 60% 40%;
+            animation: flower-fall 5s forwards ease-out; /* Longer, slower fall */
+            z-index: 5; /* Below the card, above background */
+        }
+
+        @keyframes flower-fall {
+            0% {
+                transform: translateY(-50px) translateX(0) rotateZ(0deg) rotateX(0deg);
+                opacity: 1;
+            }
+            50% {
+                transform: translateY(50vh) translateX(calc(var(--direction) * 50px)) rotateZ(180deg) rotateX(90deg); /* Add horizontal drift and rotation */
+                opacity: 0.8;
+            }
+            100% {
+                transform: translateY(100vh) translateX(calc(var(--direction) * 100px)) rotateZ(360deg) rotateX(180deg);
+                opacity: 0;
+            }
+        }
+
+        /* Animation for the heart icon */
+        @keyframes bounce-slow {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+        .animate-bounce-slow {
+            animation: bounce-slow 2s infinite ease-in-out;
+        }
+
+        .celebrate-button {
+            transition: all 0.3s ease;
+        }
+
+        .celebrate-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Basic modal styles for message box */
+        .modal {
+            display: none; /* Hidden by default */
+            position: fixed; /* Stay in place */
+            z-index: 1000; /* Sit on top */
+            left: 0;
+            top: 0;
+            width: 100%; /* Full width */
+            height: 100%; /* Full height */
+            overflow: auto; /* Enable scroll if needed */
+            background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+            justify-content: center; /* Center horizontally */
+            align-items: center; /* Center vertically */
+            padding: 1rem; /* Padding for mobile */
+            box-sizing: border-box;
+        }
+
+        .modal-content {
+            background-color: #fefefe;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 90%; /* Responsive width */
+            max-width: 400px; /* Max width for larger screens */
+            border-radius: 15px;
+            box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+            text-align: center;
+        }
+
+        .close-button {
+            color: #9b9595;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+            line-height: 20px; /* Adjust line height for better alignment */
+        }
+
+        .close-button:hover,
+        .close-button:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body class="selection:bg-pink-300 selection:text-white">
+    <!-- Main content container -->
+    <div class="card p-8 md:p-12 rounded-3xl text-center mx-auto relative z-10 flex flex-col items-center">
+        <!-- Heart Icon (SVG) -->
+        <svg class="w-16 h-16 text-pink-500 mb-4 animate-bounce-slow" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+            <path fill-rule="evenodd" d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z" clip-rule="evenodd"></path>
+        </svg>
+
+        <h1 class="text-4xl md:text-5xl font-extrabold text-red-800 mb-4 leading-tight">
+            Congratulations, Sunshine ❤️☀️
+        </h1>
+        <p class="text-lg md:text-xl text-white mb-6 font-medium">
+           I’m so incredibly proud of you for receiving your first salary! 
+           I’ve seen how hard you’ve worked and how dedicated you’ve been and now it’s all 
+           paying off. This is just the beginning of an 
+           amazing journey, I’ve prayed for your success,happiness and growth and I can’t wait to see you grow and shine even more. Keep reaching for the stars
+
+        </p>
+        <p class="text-lg md:text-xl text-white mb-8 font-medium italic">
+           Let’s celebrate this special milestone together — you truly deserve it! ❤️💸🧿 Click celebrate to celebrate.
+        </p>
+
+        <button id="celebrateBtn" class="celebrate-button bg-pink-600 hover:bg-pink-700 text-white font-bold py-3 px-8 rounded-full text-xl shadow-lg transform active:scale-95 focus:outline-none focus:ring-4 focus:ring-pink-300">
+            Celebrate! 🎉
+        </button>
+    </div>
+
+    <!-- Message box container -->
+    <div id="messageBox" class="modal">
+        <div class="modal-content">
+            <span class="close-button" id="closeMessageBox">&times;</span>
+            <p id="messageText" class="text-lg font-semibold text-gray-800"></p>
+        </div>
+    </div>
+
+
+    <script>
+        // JavaScript for flower falling effect and message box
+        const celebrateBtn = document.getElementById('celebrateBtn');
+        const messageBox = document.getElementById('messageBox');
+        const messageText = document.getElementById('messageText');
+        const closeMessageBox = document.getElementById('closeMessageBox');
+
+        // Colors for the flower petals (pinks, purples, whites)
+        const petalColors = ['#FFC0CB', '#FF69B4', '#DA70D6', '#D8BFD8', '#F5F5DC', '#FFE4E1']; // Pink, HotPink, Orchid, Thistle, Beige, MistyRose
+
+        // Function to create and animate a single flower petal
+        function createFlowerPetal() {
+            const petal = document.createElement('div');
+            petal.classList.add('flower-petal');
+            petal.style.setProperty('--color', petalColors[Math.floor(Math.random() * petalColors.length)]);
+
+            // Random starting position and animation duration
+            petal.style.left = `${Math.random() * 100}vw`;
+            petal.style.animationDuration = `${3 + Math.random() * 3}s`; // 3 to 6 seconds for slower fall
+            petal.style.animationDelay = `${Math.random() * 1}s`; // Staggered delay
+
+            // Random direction for horizontal drift (-1 for left, 1 for right)
+            petal.style.setProperty('--direction', Math.random() < 0.5 ? -1 : 1);
+
+            document.body.appendChild(petal);
+
+            // Remove petal after animation ends to clean up DOM
+            petal.addEventListener('animationend', () => {
+                petal.remove();
+            });
+        }
+
+        // Function to show a custom message box
+        function showMessageBox(message) {
+            messageText.textContent = message;
+            messageBox.style.display = 'flex'; // Make it visible using flex
+        }
+
+        // Function to hide the message box
+        function hideMessageBox() {
+            messageBox.style.display = 'none';
+        }
+
+        // Event listener for the celebrate button
+        celebrateBtn.addEventListener('click', () => {
+            // Generate multiple flower petals
+            for (let i = 0; i < 70; i++) { // More petals for a fuller effect
+                createFlowerPetal();
+            }
+            showMessageBox("Here's to many more successes! Sunshine my princess ");
+        });
+
+        // Event listener to close the message box
+        closeMessageBox.addEventListener('click', hideMessageBox);
+
+        // Close the message box if the user clicks outside of it
+        window.addEventListener('click', (event) => {
+            if (event.target == messageBox) {
+                hideMessageBox();
+            }
+        });
+
+        // Automatically trigger flower fall and message on page load
+        window.onload = function() {
+            for (let i = 0; i < 100; i++) { // Even more petals on initial load
+                createFlowerPetal();
+            }
+            showMessageBox("I'm so incredibly proud of you, my sunshine, Princess ❤️☀️ ");
+        };
+    </script>
+</body>
+</html>
